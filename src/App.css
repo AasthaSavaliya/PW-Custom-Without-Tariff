@@ -26,13 +26,17 @@ label{
 }
 
 .input-group>input.form-control {
-    flex: 0 1 55px;
+    flex: 0 1 50px;
     margin: 0 5px;
     color: grey;
 }
 
 .input-group>input[type=number]{
     margin-left: 10px !important;
+}
+
+select{
+    color: gray;
 }
 
 /*.total-button {*/

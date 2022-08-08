@@ -11,8 +11,9 @@ function App() {
     roundWeight:0,
     roundPrice:300,
     baguettePrice:400,
-    goldTotal:0
-
+    goldTotal:0,
+    baguetteTotal:0,
+    miscTotal:0
   }
   const [formData, setFormData] = useState(initialFormData)
 
@@ -20,13 +21,18 @@ function App() {
     console.log(formData)
 
       setFormData((prevState => {
-        const updatedValues ={...prevState,
+        let updatedValues ={...prevState,
           [fieldName]:parseFloat(e.target.value)
         }
+
         updatedValues['goldTotal'] = updatedValues['goldPrice'] * updatedValues['goldWeight']
         updatedValues['baguetteTotal'] = updatedValues['baguettePrice'] * updatedValues['baguetteWeight']
         updatedValues['miscTotal'] = updatedValues['miscPrice'] * updatedValues['miscWeight']
         updatedValues['totalWithoutRound'] = updatedValues['goldTotal'] + updatedValues['baguetteTotal'] +  updatedValues['miscTotal']
+        if(isNaN(updatedValues['totalWithoutRound'])){
+          updatedValues['totalWithoutRound'] = 0
+        }
+
         return updatedValues
       }));
   }
@@ -35,7 +41,7 @@ function App() {
     e.preventDefault()
     let textToCopy="";
     [300,350,400,450].map(value =>{
-       textToCopy +=`\n$${value}/Ct = ${formData['totalWithoutRound']+(formData['roundWeight']*value)}`
+       textToCopy +=`\n$${value} / Ct = ${formData['totalWithoutRound']+(formData['roundWeight']*value)}`
     })
 
     navigator.clipboard.writeText(textToCopy);
@@ -55,17 +61,19 @@ function App() {
           {/* GOLD CONTAINER */}
           <div className="gold-containers">
             <div className="d-flex align-items-center mb-3">
-              <h4 className="me-3 m-0">Gold</h4>
-              <input name='gold' onChange={(e)=>handleChange("goldWeight",e)} type="number" className="form-control text-center" id="weight1" style={{borderBottom: '1px solid black', borderRadius: 0}}
+              <h4 className="me-2 m-0">Gold</h4>
+              <input name='gold' onChange={(e)=>handleChange("goldWeight",e)} type="number" className="form-control text-center"
+                     style={{borderBottom: '1px solid black', borderRadius: 0}}
                      aria-label="Grams" />
                 <span>Gr.</span>
             </div>
 
             <div className="input-group mb-3 pe-5">
               <label>$</label>
-              <input name='goldPrice' defaultValue={formData.goldPrice} onChange={(e)=>handleChange("goldPrice",e)} type="number" className="form-control text-center" id="rate1"  aria-label="Rate" onfocusout="defaultZero(2);"/>
+              <input name='goldPrice' defaultValue={formData.goldPrice} onChange={(e)=>handleChange("goldPrice",e)}
+                     type="number" className="form-control text-center" aria-label="Rate" onfocusout="defaultZero(2);"/>
                 <label className={"me-3"}>=</label>
-              {formData['goldTotal']}
+              <label>{formData['goldTotal']}</label>
             </div>
           </div>
           {/* GOLD CONTAINER END*/}
@@ -75,21 +83,22 @@ function App() {
           {/* ROUND DIAMOND CONTAINER */}
           <div className="round-diam-container">
             <div className="d-flex align-items-center mb-3">
-              <h4 className="me-3 m-0">Round Diamonds</h4>
+              <h4 className="me-2 m-0">Round Diamonds</h4>
               <input type="number" onChange={(e)=>handleChange("roundWeight",e)}  className="form-control text-center" aria-label="Grams"
-                     id="weight2" onfocusout="defaultZero(3);" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
+                      onfocusout="defaultZero(3);" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
                 <span>Ctw.</span>
             </div>
             <div className="input-group mb-3 pe-5">
-              <select onChange={(e)=>handleChange("roundPrice",e)} name="roundPrices" >
-              <option  value={300}>300</option>
-              <option value={350}>350</option>
-              <option value={400}>400</option>
-              <option value={450}>450</option>
-            </select>
-
-            <label className={'ms-3'}>=</label>
-              {formData["roundPrice"] * formData['roundWeight']}
+              <form>
+                  <select onChange={(e)=>handleChange("roundPrice",e)} name="roundPrices">
+                      <option value={300}>300</option>
+                      <option value={350}>350</option>
+                      <option value={400}>400</option>
+                      <option value={450}>450</option>
+                  </select>
+              </form>
+            <label className={'mx-3'}>=</label>
+              <label>{formData["roundPrice"] * formData['roundWeight']}</label>
               </div>
 
           </div>
@@ -100,17 +109,18 @@ function App() {
           {/* BAGUETTE DIAMOND CONTAINER*/}
           <div className="baguette-diam-container">
             <div className="d-flex align-items-center mb-3">
-              <h4 className="me-3 m-0">Baguette Diamonds</h4>
-              <input type="number" onChange={(e)=>handleChange("baguetteWeight",e)}  className="form-control text-center" id="weight3"
+              <h4 className="me-2 m-0">Baguette Diamonds</h4>
+              <input type="number" onChange={(e)=>handleChange("baguetteWeight",e)}  className="form-control text-center"
                      aria-label="Carat weight" onfocusout="defaultZero(8);" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
                 <span>Ctw.</span>
             </div>
             <div className="input-group mb-3 pe-5">
               <label>$</label>
-              <input type="number" readOnly value={initialFormData['baguettePrice']}  className="form-control text-center rate"  aria-label="Rate" id="rate6" onfocusout="defaultZero(9);"/>
+              <input type="number" readOnly value={initialFormData['baguettePrice']}  className="form-control text-center rate"  aria-label="Rate"
+                     onfocusout="defaultZero(9);"/>
 
               <label className={"me-3"}>=</label>
-                {formData["baguetteTotal"]}
+              <label>{formData["baguetteTotal"]}</label>
             </div>
           </div>
           {/*BAGUETTE DIAMOND CONTAINER END*/}
@@ -120,19 +130,20 @@ function App() {
           {/*MISCELLANEOUS DIAMOND CONTAINER*/}
           <div className="misc-diam-container">
             <div className="d-flex align-items-center mb-3">
-              <h4 className="me-3 m-0">Misc. Diamonds</h4>
-              <input type="number"  onChange={(e)=>handleChange("miscWeight",e)} className="form-control text-center" id="weight4"
+              <h4 className="me-2 m-0">Misc. Diamonds</h4>
+              <input type="number"  onChange={(e)=>handleChange("miscWeight",e)} className="form-control text-center"
                      aria-label="Grams" onfocusout="defaultZero(10);" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
                 <span>Ctw.</span>
             </div>
 
             <div className="input-group mb-3 pe-5">
               <label>$</label>
-              <input type="number"  onChange={(e)=>handleChange("miscPrice",e)} className="form-control text-center rate" aria-label="Rate" id="rate7" onfocusout="defaultZero(11);"
+              <input type="number"  onChange={(e)=>handleChange("miscPrice",e)} className="form-control text-center rate"
+                     aria-label="Rate" onfocusout="defaultZero(11);"
                      style={{borderBottom: '1px solid grey', borderRadius: 0}}/>
 
                 <label className={"me-3"}>=</label>
-                {formData["miscTotal"]}
+              <label>{formData["miscTotal"]}</label>
             </div>
           </div>
           {/*MISCELLANEOUS DIAMOND CONTAINER END*/}
@@ -149,13 +160,13 @@ function App() {
                     {
                       [300,350,400,450].map(value => <div className="input-group">
                       <span className="fs-5">${value} / ct = </span>
-                      {formData['totalWithoutRound']+(formData['roundWeight']*value)}
+                        <span className={'fs-5 ms-2'}>{formData['totalWithoutRound']+(formData['roundWeight']*value)}</span>
                     </div> )
                     }
 
                   </div>
 
-                  <div className="col d-flex justify-content-end align-items-start">
+                  <div className="col-1 d-flex justify-content-end align-items-start">
                     <button onClick={clipBoadHandler} className="btn copy">
                       <img src={copy} alt="Copy to clipboard"/>
                     </button>

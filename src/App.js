@@ -168,7 +168,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="col d-flex justify-content-end align-items-start">
+                  <div className="col-1 d-flex justify-content-end align-items-start">
                     <button className="btn copy">
                       <img src={copy} alt="Copy to clipboard"/>
                     </button>

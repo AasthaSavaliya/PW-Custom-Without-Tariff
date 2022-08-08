@@ -31,6 +31,10 @@ label{
     color: grey;
 }
 
+.input-group>input[type=number]{
+    margin-left: 10px !important;
+}
+
 /*.total-button {*/
 /*    margin-left: auto;*/
 /*    width: 31%;*/

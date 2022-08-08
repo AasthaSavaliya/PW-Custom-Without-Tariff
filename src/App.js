@@ -50,34 +50,52 @@ function App() {
                      id="weight2" onfocusout="defaultZero(3);" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
                 <span>Ctw.</span>
             </div>
-
             <div className="input-group mb-3 pe-5">
-              <label>$</label>
-              <input type="number" className="form-control text-center" value="300" aria-label="Rate" id="rate2" onfocusout="defaultZero(4);"/>
-                <label>=</label>
-                <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total2"/>
+            <div className="btn-group">
+              <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+              </button>
+              <div className="dropdown-menu">
+                <a className="dropdown-item" href="#">Action</a>
+                <a className="dropdown-item" href="#">Another action</a>
+                <a className="dropdown-item" href="#">Something else here</a>
+                <div className="dropdown-divider"></div>
+                <a className="dropdown-item" href="#">Separated link</a>
+              </div>
             </div>
 
-            <div className="input-group mb-3 pe-5">
-              <label>$</label>
-              <input type="number" className="form-control text-center" value="350" aria-label="Rate" id="rate3" onfocusout="defaultZero(5);"/>
-                <label>=</label>
-                <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total3"/>
-            </div>
+            <label className={'ms-3'}>=</label>
+                <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total6"/>
+              </div>
 
-            <div className="input-group mb-3 pe-5">
-              <label>$</label>
-              <input type="number" className="form-control text-center" value="400" aria-label="Rate" id="rate4" onfocusout="defaultZero(6);"/>
-                <label>=</label>
-                <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total4"/>
-            </div>
+            {/*<div className="input-group mb-3 pe-5">*/}
+            {/*  <label>$</label>*/}
+            {/*  <input type="number" className="form-control text-center" value="300" aria-label="Rate" id="rate2" onfocusout="defaultZero(4);"/>*/}
+            {/*    <label>=</label>*/}
+            {/*    <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total2"/>*/}
+            {/*</div>*/}
 
-            <div className="input-group mb-3 pe-5">
-              <label>$</label>
-              <input type="number" className="form-control text-center" value="450" aria-label="Rate" id="rate5" onfocusout="defaultZero(7);"/>
-                <label>=</label>
-                <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total5"/>
-            </div>
+            {/*<div className="input-group mb-3 pe-5">*/}
+            {/*  <label>$</label>*/}
+            {/*  <input type="number" className="form-control text-center" value="350" aria-label="Rate" id="rate3" onfocusout="defaultZero(5);"/>*/}
+            {/*    <label>=</label>*/}
+            {/*    <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total3"/>*/}
+            {/*</div>*/}
+
+            {/*<div className="input-group mb-3 pe-5">*/}
+            {/*  <label>$</label>*/}
+            {/*  <input type="number" className="form-control text-center" value="400" aria-label="Rate" id="rate4" onfocusout="defaultZero(6);"/>*/}
+            {/*    <label>=</label>*/}
+            {/*    <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total4"/>*/}
+            {/*</div>*/}
+
+            {/*<div className="input-group mb-3 pe-5">*/}
+            {/*  <label>$</label>*/}
+            {/*  <input type="number" className="form-control text-center" value="450" aria-label="Rate" id="rate5" onfocusout="defaultZero(7);"/>*/}
+            {/*    <label>=</label>*/}
+            {/*    <input type="number" className="form-control text-center" placeholder="Total" aria-label="Rate" id="total5"/>*/}
+            {/*</div>*/}
+
           </div>
           {/* ROUND DIAMOND CONTAINER END */}
 

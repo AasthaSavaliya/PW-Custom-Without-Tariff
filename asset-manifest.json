@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/calc/static/css/main.34a41222.css",
+    "main.js": "/calc/static/js/main.85f36018.js",
+    "static/js/787.85bb9051.chunk.js": "/calc/static/js/787.85bb9051.chunk.js",
+    "static/media/Black-Font.png": "/calc/static/media/Black-Font.a3dc3f2abbe4994ecd1f.png",
+    "index.html": "/calc/index.html",
+    "static/media/clippy.svg": "/calc/static/media/clippy.38a005ec86ae9f581dc5a4695d96c2b8.svg",
+    "main.34a41222.css.map": "/calc/static/css/main.34a41222.css.map",
+    "main.85f36018.js.map": "/calc/static/js/main.85f36018.js.map",
+    "787.85bb9051.chunk.js.map": "/calc/static/js/787.85bb9051.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.34a41222.css",
+    "static/js/main.85f36018.js"
+  ]
+}

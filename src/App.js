@@ -71,12 +71,12 @@ console.log(formData)
 
   function resetForm(){
     const resetData = {
-      goldPrice:'',
+      // goldPrice:'',
       goldWeight:'',
       roundWeight:'',
-      roundPrice:'',
+      // roundPrice:'',
       baguetteWeight:'',
-      baguettePrice:'',
+      // baguettePrice:'',
       miscWeight:'',
       goldTotal:0,
       baguetteTotal:0,
@@ -155,6 +155,7 @@ console.log(formData)
           <hr/>
 
           {/* BAGUETTE DIAMOND CONTAINER*/}
+
           <div className="baguette-diam-container">
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Baguette Diamonds</h4>
@@ -165,11 +166,11 @@ console.log(formData)
             </div>
             <div className="input-group mb-3 pe-5">
               <label>$</label>
-              <input type="number" value={initialFormData['baguettePrice']}  className="form-control text-center rate"
-                     aria-label="Rate" defaultValue={'0'}/>
+              <input type="text" value={formData['baguettePrice']}  className="form-control text-center rate"
+                     aria-label="Rate" onChange={(e)=>handleChange("baguettePrice",e)}/>
 
               <label className={"me-3"}>=</label>
-              <label>{formData["baguettePrice"] * formData['baguetteWeight']}</label>
+              <label>{formData['baguetteTotal']}</label>
             </div>
           </div>
           {/*BAGUETTE DIAMOND CONTAINER END*/}

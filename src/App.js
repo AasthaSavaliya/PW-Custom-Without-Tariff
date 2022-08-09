@@ -7,26 +7,28 @@ function App() {
 
   let initialFormData ={
     goldPrice:38,
-    goldWeight:0,
-    roundWeight:0,
+    goldWeight:'',
+    roundWeight:'',
     roundPrice:300,
-    baguetteWeight:0,
+    baguetteWeight:'',
     baguettePrice:400,
     goldTotal:0,
     baguetteTotal:0,
     miscTotal:0,
     miscPrice:0,
-    miscWeight:0
+    miscWeight:'',
+    totalWithoutRound:0
   }
   const [formData, setFormData] = useState(initialFormData)
-
+console.log(formData)
 
   function handleChange(fieldName,e){
-    console.log(formData)
+    console.log(formData,e.target.value, fieldName)
 
       setFormData((prevState => {
+
         let updatedValues ={...prevState,
-          [fieldName]:parseFloat(e.target.value).toFixed(3)
+          [fieldName]:parseFloat(e.target.value)
         }
 
         updatedValues['goldTotal'] = updatedValues['goldPrice'] * updatedValues['goldWeight']
@@ -35,36 +37,25 @@ function App() {
         updatedValues['totalWithoutRound'] = ((updatedValues['goldTotal'] + updatedValues['baguetteTotal'] +
                                              updatedValues['miscTotal'])) * 1.1
 
-        // if((updatedValues['goldTotal']) && (updatedValues['goldPrice']) && (updatedValues['goldWeight'])
-        // && (updatedValues['roundPrice']) && (updatedValues['roundWeight']) && (updatedValues['baguettePrice'])
-        //    && (updatedValues['baguetteTotal']) && (updatedValues['baguetteWeight']) && (updatedValues['miscTotal'])
-        //  && (updatedValues['miscWeight']) && (updatedValues['miscPrice']) === ''){
-        //   updatedValues['goldTotal'] = 0
-        //   updatedValues['goldWeight'] = 0
-        //   updatedValues['goldWeight'] = 0
-        //
-        //   updatedValues['roundWeight'] = 0
-        //   updatedValues['roundPrice'] = 0
-        //
-        //   updatedValues['baguettePrice'] = 0
-        //   updatedValues['baguetteWeight'] = 0
-        //   updatedValues['baguetteTotal'] = 0
-        //
-        //   updatedValues['miscPrice'] = 0
-        //   updatedValues['miscWeight'] = 0
-        //   updatedValues['miscTotal'] = 0
-        // }
-        //
-        // if(isNaN(updatedValues['goldTotal']) && (updatedValues['baguetteTotal']) && (updatedValues['miscTotal'])
-        // && (updatedValues['totalWithoutRound'])){
-        //   updatedValues['goldTotal'] = 0
-        //   updatedValues['baguetteTotal'] = 0
-        //   updatedValues['miscTotal'] = 0
-        //   updatedValues['totalWithoutRound'] = 0
-        // }
+        if(isNaN(updatedValues['goldTotal']) ){
+          updatedValues['goldTotal'] = 0
+        }
+        if(isNaN(updatedValues['baguetteTotal']) ){
+          updatedValues['baguetteTotal'] = 0
+        }
+        if(isNaN(updatedValues['miscTotal']) ){
+          updatedValues['miscTotal'] = 0
+        }
+
+        if(isNaN(updatedValues['totalWithoutRound'])){
+          updatedValues['totalWithoutRound'] = 0
+        }
+
+         if(e.target.value.length === 0) {
+          updatedValues[fieldName] =0
+        }
 
         return updatedValues
-
       }));
   }
 
@@ -72,16 +63,33 @@ function App() {
     e.preventDefault()
     let textToCopy="";
     [300,350,400,450].map(value => {
-       textToCopy +=`\n$${value} / Ct = ${(formData['totalWithoutRound']+(formData['roundWeight']*value))*1.1}`
+       textToCopy +=`\n$${value} / Ct = ${parseFloat((formData['totalWithoutRound'])+(formData['roundWeight']*value)*1.1).toFixed(2)}`
     })
 
     navigator.clipboard.writeText(textToCopy);
   }
 
-  // function resetForm(){
-  //   document.getElementById("main-form").reset();
-  //   setFormData(0)
-  // }
+  function resetForm(){
+    const resetData = {
+      goldPrice:'',
+      goldWeight:'',
+      roundWeight:'',
+      roundPrice:'',
+      baguetteWeight:'',
+      baguettePrice:'',
+      miscWeight:'',
+      goldTotal:0,
+      baguetteTotal:0,
+      miscTotal:0,
+      miscPrice:0,
+      totalWithoutRound:0
+    }
+
+    setFormData((prevState) => {
+      return {...formData,...resetData}
+    })
+  }
+
 
   return <div>
         <div className="py-4 bg-light branding">
@@ -97,10 +105,10 @@ function App() {
           <div className="gold-containers">
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Gold</h4>
-              <input name='gold' onChange={(e)=>handleChange("goldWeight",e)} type="number"
-                     className="form-control text-center" defaultValue={'0'}
+              <input name='gold' onChange={(e)=>handleChange("goldWeight",e)} type="text"
+                     className="form-control text-center"
                      style={{borderBottom: '1px solid black', borderRadius: 0}}
-                     aria-label="Grams" />
+                     aria-label="Grams" value={formData['goldWeight']}/>
                 <span>Gr.</span>
             </div>
 
@@ -108,7 +116,7 @@ function App() {
               <label>$</label>
               <input name='goldPrice' defaultValue={formData.goldPrice}
                      onChange={(e)=>handleChange("goldPrice",e)}
-                     type="number" className="form-control text-center" aria-label="Rate" />
+                     type="text" className="form-control text-center" aria-label="Rate" value={formData['goldPrice']}/>
                 <label className={"me-3"}>=</label>
               <label>{formData['goldTotal']}</label>
             </div>
@@ -117,19 +125,21 @@ function App() {
 
           <hr/>
 
+
           {/* ROUND DIAMOND CONTAINER */}
           <div className="round-diam-container">
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Round Diamonds</h4>
-              <input type="number" onChange={(e)=>handleChange("roundWeight",e)}
-                     className="form-control text-center" aria-label="Grams" defaultValue={'0'}
+              <input type="text" onChange={(e)=>handleChange("roundWeight",e)}
+                     className="form-control text-center" aria-label="Grams" value={formData['roundWeight']}
                       onfocusout="defaultZero(3);" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
                 <span>Ctw.</span>
             </div>
             <div className="input-group mb-3 pe-5">
               <form>
                   <select onChange={(e)=>handleChange("roundPrice",e)} name="roundPrices">
-                      <option value={300}>300</option>
+
+                     <option value={300}>300</option>
                       <option value={350}>350</option>
                       <option value={400}>400</option>
                       <option value={450}>450</option>
@@ -148,8 +158,8 @@ function App() {
           <div className="baguette-diam-container">
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Baguette Diamonds</h4>
-              <input type="number" onChange={(e)=>handleChange("baguetteWeight",e)}
-                     className="form-control text-center" defaultValue={'0'}
+              <input type="text" onChange={(e)=>handleChange("baguetteWeight",e)}
+                     className="form-control text-center" value={formData['baguetteWeight']}
                      aria-label="Carat weight" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
                 <span>Ctw.</span>
             </div>
@@ -170,16 +180,16 @@ function App() {
           <div className="misc-diam-container">
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Misc. Diamonds</h4>
-              <input type="number"  onChange={(e)=>handleChange("miscWeight",e)}
-                     className="form-control text-center" defaultValue={'0'}
+              <input type="text"  onChange={(e)=>handleChange("miscWeight",e)}
+                     className="form-control text-center" value={formData['miscWeight']}
                      aria-label="Grams" style={{borderBottom: '1px solid black', borderRadius: 0}}/>
                 <span>Ctw.</span>
             </div>
 
             <div className="input-group mb-3 pe-5">
               <label>$</label>
-              <input type="number"  onChange={(e)=>handleChange("miscPrice",e)}
-                     className="form-control text-center rate" aria-label="Rate" defaultValue={'0'}
+              <input type="text"  onChange={(e)=>handleChange("miscPrice",e)}
+                     className="form-control text-center rate" aria-label="Rate" value={formData['miscPrice']}
                      style={{borderBottom: '1px solid grey', borderRadius: 0}}/>
 
                 <label className={"me-3"}>=</label>
@@ -198,7 +208,7 @@ function App() {
                 <h3 className="text-primary">Grand Total</h3>
                     {/*<button onClick={clipBoadHandler} className="btn copy">*/}
                       {/*<img src={copy} alt="Copy to clipboard"/>*/}
-                      {/*<h3 onClick={resetForm}>Clear</h3>*/}
+                      <h3 onClick={resetForm}>Clear</h3>
                     {/*</button>*/}
                   </div>
                 <div className="p-2 row" style={{border: '1px solid grey'}}>
@@ -206,7 +216,9 @@ function App() {
                     {
                       [300,350,400,450].map(value => <div className="input-group">
                       <span className="fs-5">${value} / ct = </span>
-                        <span className={'fs-5 ms-2'}>{parseFloat((formData['totalWithoutRound'])+(formData['roundWeight']*value) * 1.1).toFixed(2)}</span>
+                        <span className={'fs-5 ms-2'}>{parseFloat((formData['totalWithoutRound'])+
+                                                                  (formData['roundWeight']*value) * 1.1).toFixed(2)}
+                        </span>
                     </div> )
                     }
 

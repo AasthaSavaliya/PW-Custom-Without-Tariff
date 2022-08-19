@@ -33,7 +33,10 @@ function App() {
     setFormData((prevState) => {
       let updatedValues = {
         ...prevState,
-        [fieldName]: e.target.value,
+        [fieldName]:
+          e.target.value[0] === "0"
+            ? e.target.value.substring(1)
+            : e.target.value,
       };
 
       // setFormData({...formData,[fieldName]:e.target.value})

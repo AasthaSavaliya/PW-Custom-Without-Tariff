@@ -20,14 +20,7 @@ function App() {
     totalWithoutRound: 0,
   };
 
-  // let initialWeight={
-  //   goldWeight:'',
-  //   roundWeight:'',
-  //   baguetteWeight:'',
-  //   miscWeight:''
-  // }
   const [formData, setFormData] = useState(initialFormData);
-  // const [formData, setformData] = useState(initialWeight)
 
   function handleChange(fieldName, e) {
     setFormData((prevState) => {
@@ -39,14 +32,12 @@ function App() {
             : e.target.value,
       };
 
-      // setFormData({...formData,[fieldName]:e.target.value})
 
       updatedValues["goldTotal"] = isNaN(
         parseFloat(updatedValues["goldWeight"])
       )
         ? updatedValues["goldPrice"] * 0
         : updatedValues["goldPrice"] * parseFloat(updatedValues["goldWeight"]);
-      // console.log("gold total", updatedValues["goldTotal"]);
 
       updatedValues["baguetteTotal"] = isNaN(
         parseFloat(updatedValues["baguetteWeight"])
@@ -54,14 +45,12 @@ function App() {
         ? updatedValues["baguettePrice"] * 0
         : updatedValues["baguettePrice"] *
           parseFloat(updatedValues["baguetteWeight"]);
-      // console.log("baguette total", updatedValues["baguetteTotal"]);
 
       updatedValues["miscTotal"] = isNaN(
         parseFloat(updatedValues["miscWeight"])
       )
         ? updatedValues["miscPrice"] * 0
         : updatedValues["miscPrice"] * parseFloat(updatedValues["miscWeight"]);
-      // console.log("misc total", updatedValues["miscTotal"]);
 
       updatedValues["roundTotal"] = isNaN(
         parseFloat(updatedValues["roundWeight"])
@@ -69,14 +58,12 @@ function App() {
         ? updatedValues["roundPrice"] * 0
         : updatedValues["roundPrice"] *
           parseFloat(updatedValues["roundWeight"]);
-      // console.log("round total", updatedValues["roundTotal"]);
 
       updatedValues["totalWithoutRound"] =
         updatedValues["goldTotal"] +
         updatedValues["baguetteTotal"] +
         updatedValues["miscTotal"];
 
-      // console.log("total without - ", updatedValues.totalWithoutRound);
       if (e.target.value.length === 0) {
         updatedValues[fieldName] = 0;
       }
@@ -84,69 +71,12 @@ function App() {
     });
   }
 
-  // function handleChange(fieldName,e){
-  //   // console.log(formData,e.target.value, fieldName)
-  //
-  //     setFormData((prevState => {
-  //
-  //       let updatedValues ={...prevState,
-  //         [fieldName]:e.target.value
-  //       }
-  //
-  //       // console.log("Updated values of field",updatedValues)
-  //
-  //       updatedValues['goldTotal'] = updatedValues['goldPrice'] * parseFloat(updatedValues['goldWeight'])
-  //       // console.log('gold total',updatedValues['goldTotal'])
-  //
-  //       updatedValues['baguetteTotal'] = updatedValues['baguettePrice'] * parseFloat(updatedValues['baguetteWeight'])
-  //       // console.log('baguette total',updatedValues['baguetteTotal'])
-  //
-  //       updatedValues['miscTotal'] = updatedValues['miscPrice'] * parseFloat(updatedValues['miscWeight'])
-  //       // console.log('misc total',updatedValues['miscTotal'])
-  //
-  //       updatedValues['roundTotal']=updatedValues["roundPrice"] * parseFloat(updatedValues['roundWeight'])
-  //       // console.log('round total',updatedValues['roundTotal'])
-  //
-  //       updatedValues['totalWithoutRound'] = (updatedValues['goldTotal'] + updatedValues['baguetteTotal'] +
-  //                                            updatedValues['miscTotal'])
-  //       // console.log('total without round ',updatedValues['totalWithoutRound'])
-  //
-  //       if(isNaN(updatedValues['goldTotal']) ){
-  //         updatedValues['goldTotal'] = 0
-  //       }
-  //       if(isNaN(updatedValues['baguetteTotal']) ){
-  //         updatedValues['baguetteTotal'] = 0
-  //       }
-  //       if(isNaN(updatedValues['miscTotal']) ){
-  //         updatedValues['miscTotal'] = 0
-  //       }
-  //       // if(isNaN(updatedValues['roundTotal']) ){
-  //       //   updatedValues['roundTotal'] = 0
-  //       // }
-  //
-  //       if(isNaN(updatedValues['totalWithoutRound'])){
-  //         updatedValues['totalWithoutRound'] = 0
-  //       }
-  //
-  //        if(e.target.value.length === 0) {
-  //         updatedValues[fieldName] = 0
-  //       }
-  //
-  //       return updatedValues
-  //     }));
-  // }
-
-  // function handleChange((fieldName,e){
-  //   setformData({...formData,[fieldName]:e.target.value})
-  //   handleChange()
-  // }
-
   function clipBoadHandler(e) {
     e.preventDefault();
     let textToCopy = "";
     [300, 350, 400, 450].map((value) => {
       textToCopy += `\n$${value} / Ct = ${parseFloat(
-        formData["totalWithoutRound"] + formData["roundWeight"] * value * 1.1
+        (formData["totalWithoutRound"] + formData["roundWeight"] * value) * 1.1
       ).toFixed(2)}`;
     });
 
@@ -155,12 +85,9 @@ function App() {
 
   function resetForm() {
     const resetData = {
-      // goldPrice:'',
       goldWeight: "",
       roundWeight: "",
-      // roundPrice:'',
       baguetteWeight: "",
-      // baguettePrice:'',
       miscWeight: "",
       goldTotal: 0,
       baguetteTotal: 0,
@@ -175,45 +102,6 @@ function App() {
       return { ...prevState, ...resetData };
     });
   }
-
-  // useEffect(() => {
-  //   // console.log("fomr data - ", formData);
-  // }, [formData]);
-
-  // useEffect(() => {
-  //   console.log(formData);
-  //   // console.log(parseFloat(formData['goldWeight']))
-  //   // console.log(parseFloat(formData['roundWeight']))
-  //   // console.log(parseFloat(formData['baguetteWeight']))
-  //   // console.log(parseFloat(formData['miscWeight']))
-
-  //   formData["goldTotal"] =
-  //     formData["goldPrice"] * isNaN(parseFloat(formData["goldWeight"]))
-  //       ? 0
-  //       : parseFloat(formData["goldWeight"]);
-  //   console.log("gold total", formData["goldTotal"]);
-
-  //   formData["baguetteTotal"] =
-  //     formData["baguettePrice"] * isNaN(parseFloat(formData["baguetteWeight"]))
-  //       ? 0
-  //       : parseFloat(formData["baguetteWeight"]);
-  //   console.log("baguette total", formData["baguetteTotal"]);
-
-  //   formData["miscTotal"] =
-  //     formData["miscPrice"] * isNaN(parseFloat(formData["miscWeight"]))
-  //       ? 0
-  //       : parseFloat(formData["miscWeight"]);
-  //   console.log("misc total", formData["miscTotal"]);
-
-  //   formData["roundTotal"] =
-  //     formData["roundPrice"] * isNaN(parseFloat(formData["roundWeight"]))
-  //       ? 0
-  //       : parseFloat(formData["roundWeight"]);
-  //   console.log("round total", formData["roundTotal"]);
-
-  //   formData["totalWithoutRound"] =
-  //     formData["goldTotal"] + formData["baguetteTotal"] + formData["miscTotal"];
-  // }, [formData]);
 
   return (
     <div>

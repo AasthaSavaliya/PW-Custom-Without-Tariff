@@ -71,13 +71,14 @@ function App() {
     });
   }
 
+
   function clipBoadHandler(e) {
     e.preventDefault();
     let textToCopy = "";
     [300, 350, 400, 450].map((value) => {
       textToCopy += `\n$${value} / Ct = ${parseFloat(
-        (formData["totalWithoutRound"] + formData["roundWeight"] * value) * 1.1
-      ).toFixed(2)}`;
+        (Math.ceil((formData["totalWithoutRound"] + formData["roundWeight"] * value) * 1.1)
+      ))}`;
     });
 
     navigator.clipboard.writeText(textToCopy);
@@ -276,15 +277,15 @@ function App() {
                           <span className="fs-5">${value} / ct = </span>
                           <span className={"fs-5 ms-2"}>
                             {isNaN(parseFloat(formData["roundWeight"]))
-                              ? (
+                              ? Math.ceil(
                                   (formData["totalWithoutRound"] + 0 * value) *
                                   1.1
-                                ).toFixed(2)
-                              : (
+                                )
+                              : Math.ceil(
                                   (formData["totalWithoutRound"] +
                                     value * formData["roundWeight"]) *
                                   1.1
-                                ).toFixed(2)}
+                                )}
                           </span>
                         </div>
                       );

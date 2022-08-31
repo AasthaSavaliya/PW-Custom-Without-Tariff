@@ -32,7 +32,6 @@ function App() {
             : e.target.value,
       };
 
-
       updatedValues["goldTotal"] = isNaN(
         parseFloat(updatedValues["goldWeight"])
       )
@@ -71,14 +70,16 @@ function App() {
     });
   }
 
-
   function clipBoadHandler(e) {
     e.preventDefault();
     let textToCopy = "";
     [300, 350, 400, 450].map((value) => {
       textToCopy += `\n$${value} / Ct = ${parseFloat(
-        (Math.ceil((formData["totalWithoutRound"] + formData["roundWeight"] * value) * 1.1)
-      ))}`;
+        Math.ceil(
+          (formData["totalWithoutRound"] + formData["roundWeight"] * value) *
+            1.1
+        )
+      )}`;
     });
 
     navigator.clipboard.writeText(textToCopy);
@@ -278,14 +279,16 @@ function App() {
                           <span className={"fs-5 ms-2"}>
                             {isNaN(parseFloat(formData["roundWeight"]))
                               ? Math.ceil(
-                                  (formData["totalWithoutRound"] + 0 * value) *
-                                  1.1
-                                )
+                                  ((formData["totalWithoutRound"] + 0 * value) *
+                                    1.1) /
+                                    10
+                                ) * 10
                               : Math.ceil(
-                                  (formData["totalWithoutRound"] +
+                                  ((formData["totalWithoutRound"] +
                                     value * formData["roundWeight"]) *
-                                  1.1
-                                )}
+                                    1.1) /
+                                    10
+                                ) * 10}
                           </span>
                         </div>
                       );

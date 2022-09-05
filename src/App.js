@@ -76,9 +76,9 @@ function App() {
     [300, 350, 400, 450].map((value) => {
       textToCopy += `\n$${value} / Ct = ${parseFloat(
         Math.ceil(
-          (formData["totalWithoutRound"] + formData["roundWeight"] * value) *
-            1.1
-        )
+            ((formData["totalWithoutRound"] + formData["roundWeight"] * value) *
+            1.1)/10
+        )*10
       )}`;
     });
 

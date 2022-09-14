@@ -7,8 +7,9 @@ label{
 }
 
 .branding{
-    background: linear-gradient(222.51deg, #91CED5 13.41%, #EAF098 79.62%);
-    opacity: 80%;
+    /*background: linear-gradient(222.51deg, #91CED5 13.41%, #EAF098 79.62%);*/
+    /*opacity: 80%;*/
+    background-color: #e7f5fe;
 }
 
 .form-control{

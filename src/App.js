@@ -107,7 +107,7 @@ function App() {
 
   return (
     <div>
-      <div className="py-4 bg-light branding">
+      <div className="py-4 branding">
         <img
           src={logo}
           alt="Prime Wholesale logo"

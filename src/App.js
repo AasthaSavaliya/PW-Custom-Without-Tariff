@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   let initialFormData = {
-    goldPrice: 38,
+    goldPrice: 39,
     goldWeight: "",
     roundWeight: "",
     roundPrice: 300,
@@ -305,6 +305,58 @@ function App() {
             </form>
           </div>
           {/*TOTAL CONTAINER END*/}
+
+
+          {/*TOTAL CONTAINER 2*/}
+          <div className="total-container mt-4">
+            <form className="row">
+              <div className="col-12">
+                <div className="d-flex justify-content-end">
+                  {/*<h3 className="text-primary">Grand Total</h3>*/}
+                  {/*<button onClick={clipBoadHandler} className="btn copy">*/}
+                  {/*<img src={copy} alt="Copy to clipboard"/>*/}
+                  <h3 onClick={resetForm}>Clear</h3>
+                  {/*</button>*/}
+                </div>
+                <div className="p-2 row" style={{ border: "1px solid grey" }}>
+                  <div className="col">
+                    {[{name:'Si',value:300}, {name:'Si/ Vs', value:350}, {name:'Vs',value:400}, {name:'Vs/ Vvs', value:450}].map((value) => {
+                      return (
+                        <div className="input-group" key={value.name}>
+                          <span className="fs-5">{value.name} = </span>
+                          {/*<span className="fs-5">Si/ Vs = </span>*/}
+                          {/*<span className="fs-5">Vs = </span>*/}
+                          {/*<span className="fs-5">Vs/ Vvs = </span>*/}
+                          <span className={"fs-5 ms-2"}>
+                            {isNaN(parseFloat(formData["roundWeight"]))
+                              ? Math.ceil(
+                                  ((formData["totalWithoutRound"] + 0 * value.value) *
+                                    1.1) /
+                                    10
+                                ) * 10
+                              : Math.ceil(
+                                  ((formData["totalWithoutRound"] +
+                                    value.value * formData["roundWeight"]) *
+                                    1.1) /
+                                    10
+                                ) * 10}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="col-1 d-flex justify-content-end align-items-start">
+                    <button onClick={clipBoadHandler} className="btn copy">
+                      <img src={copy} alt="Copy to clipboard" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          {/*TOTAL CONTAINER 2 END*/}
+
         </form>
       </section>
     </div>

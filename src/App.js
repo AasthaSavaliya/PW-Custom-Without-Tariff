@@ -1,7 +1,8 @@
-import { useState } from "react";
+import {useEffect, useState} from 'react'
 import logo from "./assets/Black-Font.png";
 import copy from "./assets/clippy.svg";
 import "./App.css";
+
 
 function App() {
   let initialFormData = {
@@ -104,6 +105,10 @@ function App() {
       return { ...prevState, ...resetData };
     });
   }
+
+  useEffect(() => {
+   document.title = "PW Custom"
+}, []);
 
   return (
     <div>

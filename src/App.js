@@ -86,6 +86,21 @@ function App() {
     navigator.clipboard.writeText(textToCopy);
   }
 
+  function clipBoadHandler2(e) {
+    e.preventDefault();
+    let textToCopy = "";
+    [{name:'Si',value:300}, {name:'Si/ Vs', value:350}, {name:'Vs',value:400}, {name:'Vs/ Vvs', value:450}].map((value) => {
+      textToCopy += `\n$${value.name} = ${parseFloat(
+        Math.ceil(
+            ((formData["totalWithoutRound"] + formData["roundWeight"] * value.value) *
+            1.1)/10
+        )*10
+      )}`;
+    });
+
+    navigator.clipboard.writeText(textToCopy);
+  }
+
   function resetForm() {
     const resetData = {
       goldWeight: "",
@@ -352,7 +367,7 @@ function App() {
                   </div>
 
                   <div className="col-1 d-flex justify-content-end align-items-start">
-                    <button onClick={clipBoadHandler} className="btn copy">
+                    <button onClick={clipBoadHandler2} className="btn copy">
                       <img src={copy} alt="Copy to clipboard" />
                     </button>
                   </div>

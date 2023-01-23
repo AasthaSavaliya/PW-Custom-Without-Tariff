@@ -340,14 +340,14 @@ function App() {
                 </div>
                 <div className="p-2 row" style={{ border: "1px solid grey" }}>
                   <div className="col">
-                    {[{name:'Si',value:300}, {name:'Si/ Vs', value:350}, {name:'Vs',value:400}, {name:'Vs/ Vvs', value:450}].map((value) => {
+                    {[{name:'SI',value:300}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
                       return (
                         <div className="input-group" key={value.name}>
                           <span className="fs-5">{value.name} = </span>
                           {/*<span className="fs-5">Si/ Vs = </span>*/}
                           {/*<span className="fs-5">Vs = </span>*/}
                           {/*<span className="fs-5">Vs/ Vvs = </span>*/}
-                          <span className={"fs-5 ms-2"}>
+                          <span className={"fs-5 ms-2"}>$
                             {isNaN(parseFloat(formData["roundWeight"]))
                               ? Math.ceil(
                                   ((formData["totalWithoutRound"] + 0 * value.value) *

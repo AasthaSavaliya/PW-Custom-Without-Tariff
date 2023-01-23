@@ -126,7 +126,7 @@ function App() {
 }, []);
 
   return (
-    <div>
+    <>
       <div className="py-4 branding">
         <img
           src={logo}
@@ -331,13 +331,7 @@ function App() {
           <div className="total-container mt-4">
             <form className="row">
               <div className="col-12">
-                <div className="d-flex justify-content-end">
-                  {/*<h3 className="text-primary">Grand Total</h3>*/}
-                  {/*<button onClick={clipBoadHandler} className="btn copy">*/}
-                  {/*<img src={copy} alt="Copy to clipboard"/>*/}
-                  <h3 onClick={resetForm}>Clear</h3>
-                  {/*</button>*/}
-                </div>
+
                 <div className="p-2 row" style={{ border: "1px solid grey" }}>
                   <div className="col">
                     {[{name:'SI',value:300}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
@@ -379,7 +373,7 @@ function App() {
 
         </form>
       </section>
-    </div>
+    </>
   );
 }
 

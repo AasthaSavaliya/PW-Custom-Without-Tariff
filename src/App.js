@@ -89,10 +89,10 @@ function App() {
   function clipBoadHandler2(e) {
     e.preventDefault();
     let textToCopy = "";
-    [{name:'Si',value:300}, {name:'Si/ Vs', value:350}, {name:'Vs',value:400}, {name:'Vs/ Vvs', value:450}].map((value) => {
-      textToCopy += `\n$${value.name} = ${parseFloat(
+    [{name:'SI',value:300}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
+      textToCopy += `\n${value.name} = $${parseFloat(
         Math.ceil(
-            ((formData["totalWithoutRound"] + formData["roundWeight"] * value.value) *
+            ((formData["totalWithoutRound"] + formData["roundWeight"] * `${value.value}`) *
             1.1)/10
         )*10
       )}`;

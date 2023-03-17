@@ -161,22 +161,22 @@ function App() {
 
             <div className="input-group mb-3 pe-5">
               <label>$&nbsp;</label>
-              {/*<input*/}
-              {/*  name="goldPrice"*/}
-              {/*  onChange={handleChange.bind(this, "goldPrice")}*/}
-              {/*  type="text"*/}
-              {/*  className="form-control text-center"*/}
-              {/*  aria-label="Rate"*/}
-              {/*  value={formData["goldPrice"]}*/}
-              {/*/>*/}
+              <input
+                name="goldPrice"
+                onChange={handleChange.bind(this, "goldPrice")}
+                type="text"
+                className="form-control text-center"
+                aria-label="Rate"
+                value={formData["goldPrice"]}
+              />
 
-              <select
-                  onChange={handleChange.bind(this, "goldPrice")}
-                  name="goldPrices"
-                >
-                  <option value={39}>39</option>
-                  <option value={40}>40</option>
-                </select>
+              {/*<select*/}
+              {/*    onChange={handleChange.bind(this, "goldPrice")}*/}
+              {/*    name="goldPrices"*/}
+              {/*  >*/}
+              {/*    <option value={39}>39</option>*/}
+              {/*    <option value={40}>40</option>*/}
+              {/*  </select>*/}
               <label className={"mx-3"}>=</label>
               <label>{formData["goldTotal"].toFixed(2)}</label>
             </div>

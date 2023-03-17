@@ -177,7 +177,7 @@ function App() {
               {/*    <option value={39}>39</option>*/}
               {/*    <option value={40}>40</option>*/}
               {/*  </select>*/}
-              <label className={"mx-3"}>=</label>
+              <label className={"me-3"}>=</label>
               <label>{formData["goldTotal"].toFixed(2)}</label>
             </div>
           </div>

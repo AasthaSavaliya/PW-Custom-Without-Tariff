@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   let initialFormData = {
-    goldPrice: 40,
+    goldPrice: 43,
     goldWeight: "",
     roundWeight: "",
     roundPrice: 275,
@@ -74,7 +74,7 @@ function App() {
   function clipBoadHandler(e) {
     e.preventDefault();
     let textToCopy = "";
-    [275, 300, 350, 400, 450].map((value) => {
+    [275, 325, 350, 400, 450].map((value) => {
       textToCopy += `\n$${value} / Ct = ${parseFloat(
         Math.ceil(
             ((formData["totalWithoutRound"] + formData["roundWeight"] * value) *
@@ -89,7 +89,7 @@ function App() {
   function clipBoadHandler2(e) {
     e.preventDefault();
     let textToCopy = "";
-    [{name:'TTLB',value:275}, {name:'SI',value:300}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
+    [{name:'TTLB',value:275}, {name:'SI',value:325}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
       textToCopy += `\n${value.name} = $${parseFloat(
         Math.ceil(
             ((formData["totalWithoutRound"] + formData["roundWeight"] * `${value.value}`) *
@@ -175,7 +175,7 @@ function App() {
               {/*    name="goldPrices"*/}
               {/*  >*/}
               {/*    <option value={39}>39</option>*/}
-              {/*    <option value={40}>40</option>*/}
+              {/*    <option value={43}>43</option>*/}
               {/*  </select>*/}
               <label className={"me-3"}>=</label>
               <label>{formData["goldTotal"].toFixed(2)}</label>
@@ -206,7 +206,7 @@ function App() {
                   name="roundPrices"
                 >
                   <option value={275}>275</option>
-                  <option value={300}>300</option>
+                  <option value={325}>325</option>
                   <option value={350}>350</option>
                   <option value={400}>400</option>
                   <option value={450}>450</option>
@@ -301,7 +301,7 @@ function App() {
                 </div>
                 <div className="p-2 row" style={{ border: "1px solid grey" }}>
                   <div className="col">
-                    {[275, 300, 350, 400, 450].map((value) => {
+                    {[275, 325, 350, 400, 450].map((value) => {
                       return (
                         <div className="input-group" key={value}>
                           <span className="fs-5">${value} / ct = </span>
@@ -343,7 +343,7 @@ function App() {
 
                 <div className="p-2 row" style={{ border: "1px solid grey" }}>
                   <div className="col">
-                    {[{name:'TTLB',value:275}, {name:'SI',value:300}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
+                    {[{name:'TTLB',value:275}, {name:'SI',value:325}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
                       return (
                         <div className="input-group" key={value.name}>
                           <span className="fs-5">{value.name} = </span>

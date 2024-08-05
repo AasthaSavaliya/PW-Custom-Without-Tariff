@@ -150,7 +150,7 @@ function App() {
               <input
                 name="gold"
                 onChange={handleChange.bind(this, "goldWeight")}
-                type="text"
+                type="number"
                 className="form-control text-center"
                 style={{ borderBottom: "1px solid black", borderRadius: 0 }}
                 aria-label="Grams"
@@ -164,7 +164,7 @@ function App() {
               <input
                 name="goldPrice"
                 onChange={handleChange.bind(this, "goldPrice")}
-                type="text"
+                type="number"
                 className="form-control text-center"
                 aria-label="Rate"
                 value={formData["goldPrice"]}
@@ -190,7 +190,7 @@ function App() {
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Round Diamonds</h4>
               <input
-                type="text"
+                type="number"
                 onChange={handleChange.bind(this, "roundWeight")}
                 className="form-control text-center"
                 aria-label="Grams"
@@ -227,7 +227,7 @@ function App() {
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Baguette Diamonds</h4>
               <input
-                type="text"
+                type="number"
                 onChange={handleChange.bind(this, "baguetteWeight")}
                 className="form-control text-center"
                 value={formData["baguetteWeight"]}
@@ -239,7 +239,7 @@ function App() {
             <div className="input-group mb-3 pe-5">
               <label>$</label>
               <input
-                type="text"
+                type="number"
                 value={formData["baguettePrice"]}
                 className="form-control text-center"
                 aria-label="Rate"
@@ -259,7 +259,7 @@ function App() {
             <div className="d-flex align-items-center mb-3">
               <h4 className="me-2 m-0">Misc. Diamonds</h4>
               <input
-                type="text"
+                type="number"
                 onChange={handleChange.bind(this, "miscWeight")}
                 className="form-control text-center"
                 value={formData["miscWeight"]}
@@ -272,7 +272,7 @@ function App() {
             <div className="input-group mb-3 pe-5">
               <label>$</label>
               <input
-                type="text"
+                type="number"
                 onChange={handleChange.bind(this, "miscPrice")}
                 className="form-control text-center"
                 aria-label="Rate"

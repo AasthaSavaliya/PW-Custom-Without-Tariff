@@ -6,10 +6,10 @@ import "./App.css";
 
 function App() {
   let initialFormData = {
-    goldPrice: 52,
+    goldPrice: 54,
     goldWeight: "",
     roundWeight: "",
-    roundPrice: 275,
+    roundPrice: 250,
     baguetteWeight: "",
     roundTotal: 0,
     baguettePrice: 400,
@@ -74,11 +74,11 @@ function App() {
   function clipBoadHandler(e) {
     e.preventDefault();
     let textToCopy = "";
-    [275, 325, 350, 400, 450].map((value) => {
+    [250, 275, 325, 400, 450].map((value) => {
       textToCopy += `\n$${value} / Ct = ${parseFloat(
         Math.ceil(
             ((formData["totalWithoutRound"] + formData["roundWeight"] * value) *
-            1.1)/10
+            1.12)/10
         )*10
       )}`;
     });
@@ -89,11 +89,11 @@ function App() {
   function clipBoadHandler2(e) {
     e.preventDefault();
     let textToCopy = "";
-    [{name:'TTLB',value:275}, {name:'SI',value:325}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
+    [{name:'TTLB',value:250}, {name:'SI',value:275}, {name:'SI/ VS', value:325}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
       textToCopy += `\n${value.name} = $${parseFloat(
         Math.ceil(
             ((formData["totalWithoutRound"] + formData["roundWeight"] * `${value.value}`) *
-            1.1)/10
+            1.12)/10
         )*10
       )}`;
     });
@@ -112,7 +112,7 @@ function App() {
       miscTotal: 0,
       miscPrice: 0,
       roundTotal: 0,
-      roundPrice: 275,
+      roundPrice: 250,
       totalWithoutRound: 0,
     };
 
@@ -205,9 +205,9 @@ function App() {
                   onChange={handleChange.bind(this, "roundPrice")}
                   name="roundPrices"
                 >
+                  <option value={250}>250</option>
                   <option value={275}>275</option>
                   <option value={325}>325</option>
-                  <option value={350}>350</option>
                   <option value={400}>400</option>
                   <option value={450}>450</option>
                 </select>
@@ -301,7 +301,7 @@ function App() {
                 </div>
                 <div className="p-2 row" style={{ border: "1px solid grey" }}>
                   <div className="col">
-                    {[275, 325, 350, 400, 450].map((value) => {
+                    {[250, 275, 325, 400, 450].map((value) => {
                       return (
                         <div className="input-group" key={value}>
                           <span className="fs-5">${value} / ct = </span>
@@ -309,13 +309,13 @@ function App() {
                             {isNaN(parseFloat(formData["roundWeight"]))
                               ? Math.ceil(
                                   ((formData["totalWithoutRound"] + 0 * value) *
-                                    1.1) /
+                                    1.12) /
                                     10
                                 ) * 10
                               : Math.ceil(
                                   ((formData["totalWithoutRound"] +
                                     value * formData["roundWeight"]) *
-                                    1.1) /
+                                    1.12) /
                                     10
                                 ) * 10}
                           </span>
@@ -343,7 +343,7 @@ function App() {
 
                 <div className="p-2 row" style={{ border: "1px solid grey" }}>
                   <div className="col">
-                    {[{name:'TTLB',value:275}, {name:'SI',value:325}, {name:'SI/ VS', value:350}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
+                    {[{name:'TTLB',value:250}, {name:'SI',value:275}, {name:'SI/ VS', value:325}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
                       return (
                         <div className="input-group" key={value.name}>
                           <span className="fs-5">{value.name} = </span>
@@ -354,13 +354,13 @@ function App() {
                             {isNaN(parseFloat(formData["roundWeight"]))
                               ? Math.ceil(
                                   ((formData["totalWithoutRound"] + 0 * value.value) *
-                                    1.1) /
+                                    1.12) /
                                     10
                                 ) * 10
                               : Math.ceil(
                                   ((formData["totalWithoutRound"] +
                                     value.value * formData["roundWeight"]) *
-                                    1.1) /
+                                    1.12) /
                                     10
                                 ) * 10}
                           </span>

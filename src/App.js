@@ -86,20 +86,36 @@ function App() {
     navigator.clipboard.writeText(textToCopy);
   }
 
-  function clipBoadHandler2(e) {
-    e.preventDefault();
-    let textToCopy = "";
-    [{name:'TTLB',value:250}, {name:'SI',value:275}, {name:'SI/ VS', value:325}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
-      textToCopy += `\n${value.name} = $${parseFloat(
-        Math.ceil(
-            ((formData["totalWithoutRound"] + formData["roundWeight"] * `${value.value}`) *
-            1.12)/10
-        )*10
-      )}`;
-    });
+  // function clipBoadHandler2(e) {
+  //   e.preventDefault();
+  //   let textToCopy = "";
+  //   [{name:'TTLB',value:250}, {name:'SI',value:275}, {name:'SI/ VS', value:325}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
+  //     textToCopy += `\n${value.name} = $${parseFloat(
+  //       Math.ceil(
+  //           ((formData["totalWithoutRound"] + formData["roundWeight"] * `${value.value}`) *
+  //           1.12)/10
+  //       )*10
+  //     )}`;
+  //   });
+  //
+  //   navigator.clipboard.writeText(textToCopy);
+  // }
 
-    navigator.clipboard.writeText(textToCopy);
-  }
+  function clipBoadHandler(e) {
+  e.preventDefault();
+  let textToCopy = "";
+  [250, 275, 325, 400, 450].map((value) => {
+    textToCopy += `\n$${value} / Ct = ${parseFloat(
+      Math.ceil(
+        ((formData["totalWithoutRound"] + formData["roundWeight"] * value) * 1.12) / 10
+      ) * 10
+    )}`;
+  });
+
+  textToCopy += "\n\n*26% Trump Tariff will be added to the final agreed prices.";
+
+  navigator.clipboard.writeText(textToCopy);
+}
 
   function resetForm() {
     const resetData = {
@@ -300,7 +316,7 @@ function App() {
                   <h3 onClick={resetForm}>Clear</h3>
                   {/*</button>*/}
                 </div>
-                <div className="p-2 row" style={{ border: "1px solid grey" }}>
+                <div className="p-2 row position-relative" style={{ border: "1px solid grey" }}>
                   <div className="col">
                     {[250, 275, 325, 400, 450].map((value) => {
                       return (
@@ -325,7 +341,13 @@ function App() {
                     })}
                   </div>
 
-                  <div className="col-1 d-flex justify-content-end align-items-start">
+                  <div className="col-12 mt-2">
+                    <p className="text-muted" style={{ fontSize: '16px', width: '100%' }}>
+                      *26% Trump Tariff will be added to the final agreed prices.
+                    </p>
+                  </div>
+
+                  <div className="position-absolute end-0 ps-0 top-0 w-auto">
                     <button onClick={clipBoadHandler} className="btn copy">
                       <img src={copy} alt="Copy to clipboard" />
                     </button>
@@ -337,49 +359,49 @@ function App() {
           {/*TOTAL CONTAINER END*/}
 
 
-          {/*TOTAL CONTAINER 2*/}
-          <div className="total-container mt-4">
-            <form className="row">
-              <div className="col-12">
+          {/*/!*TOTAL CONTAINER 2*!/*/}
+          {/*<div className="total-container mt-4">*/}
+          {/*  <form className="row">*/}
+          {/*    <div className="col-12">*/}
 
-                <div className="p-2 row" style={{ border: "1px solid grey" }}>
-                  <div className="col">
-                    {[{name:'TTLB',value:250}, {name:'SI',value:275}, {name:'SI/ VS', value:325}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {
-                      return (
-                        <div className="input-group" key={value.name}>
-                          <span className="fs-5">{value.name} = </span>
-                          {/*<span className="fs-5">Si/ Vs = </span>*/}
-                          {/*<span className="fs-5">Vs = </span>*/}
-                          {/*<span className="fs-5">Vs/ Vvs = </span>*/}
-                          <span className={"fs-5 ms-2"}>$
-                            {isNaN(parseFloat(formData["roundWeight"]))
-                              ? Math.ceil(
-                                  ((formData["totalWithoutRound"] + 0 * value.value) *
-                                    1.12) /
-                                    10
-                                ) * 10
-                              : Math.ceil(
-                                  ((formData["totalWithoutRound"] +
-                                    value.value * formData["roundWeight"]) *
-                                    1.12) /
-                                    10
-                                ) * 10}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
+          {/*      <div className="p-2 row" style={{ border: "1px solid grey" }}>*/}
+          {/*        <div className="col">*/}
+          {/*          {[{name:'TTLB',value:250}, {name:'SI',value:275}, {name:'SI/ VS', value:325}, {name:'VS',value:400}, {name:'VS/ VVS', value:450}].map((value) => {*/}
+          {/*            return (*/}
+          {/*              <div className="input-group" key={value.name}>*/}
+          {/*                <span className="fs-5">{value.name} = </span>*/}
+          {/*                /!*<span className="fs-5">Si/ Vs = </span>*!/*/}
+          {/*                /!*<span className="fs-5">Vs = </span>*!/*/}
+          {/*                /!*<span className="fs-5">Vs/ Vvs = </span>*!/*/}
+          {/*                <span className={"fs-5 ms-2"}>$*/}
+          {/*                  {isNaN(parseFloat(formData["roundWeight"]))*/}
+          {/*                    ? Math.ceil(*/}
+          {/*                        ((formData["totalWithoutRound"] + 0 * value.value) **/}
+          {/*                          1.12) /*/}
+          {/*                          10*/}
+          {/*                      ) * 10*/}
+          {/*                    : Math.ceil(*/}
+          {/*                        ((formData["totalWithoutRound"] +*/}
+          {/*                          value.value * formData["roundWeight"]) **/}
+          {/*                          1.12) /*/}
+          {/*                          10*/}
+          {/*                      ) * 10}*/}
+          {/*                </span>*/}
+          {/*              </div>*/}
+          {/*            );*/}
+          {/*          })}*/}
+          {/*        </div>*/}
 
-                  <div className="col-1 d-flex justify-content-end align-items-start">
-                    <button onClick={clipBoadHandler2} className="btn copy">
-                      <img src={copy} alt="Copy to clipboard" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          {/*TOTAL CONTAINER 2 END*/}
+          {/*        <div className="col-1 d-flex justify-content-end align-items-start">*/}
+          {/*          <button onClick={clipBoadHandler2} className="btn copy">*/}
+          {/*            <img src={copy} alt="Copy to clipboard" />*/}
+          {/*          </button>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  </form>*/}
+          {/*</div>*/}
+          {/*/!*TOTAL CONTAINER 2 END*!/*/}
 
         </form>
       </section>

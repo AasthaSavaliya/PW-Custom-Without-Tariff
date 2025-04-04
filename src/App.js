@@ -112,7 +112,7 @@ function App() {
     )}`;
   });
 
-  textToCopy += "\n\n*26% Trump Tariff will be added to the final agreed prices.";
+  textToCopy += "\n\nNOTE: 26% Trump Tariff will be added to the final agreed prices.";
 
   navigator.clipboard.writeText(textToCopy);
 }
@@ -343,7 +343,7 @@ function App() {
 
                   <div className="col-12 mt-2">
                     <p className="text-muted" style={{ fontSize: '16px', width: '100%' }}>
-                      *26% Trump Tariff will be added to the final agreed prices.
+                      NOTE: 26% Trump Tariff will be added to the final agreed prices.
                     </p>
                   </div>
 

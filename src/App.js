@@ -347,7 +347,7 @@ function App() {
                     </p>
                   </div>
 
-                  <div className="position-absolute end-0 ps-0 top-0 w-auto">
+                  <div className="position-absolute end-0 ps-0 w-auto">
                     <button onClick={clipBoadHandler} className="btn copy">
                       <img src={copy} alt="Copy to clipboard" />
                     </button>

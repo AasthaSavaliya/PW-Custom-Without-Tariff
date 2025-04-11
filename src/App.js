@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   let initialFormData = {
-    goldPrice: 55,
+    goldPrice: 57,
     goldWeight: "",
     roundWeight: "",
     roundPrice: 250,
@@ -112,7 +112,7 @@ function App() {
     )}`;
   });
 
-  textToCopy += "\n\nNOTE: Final Cost, Including 10% Trump Tariff.";
+  textToCopy += "\n\nIncluding 10% Trump Tariff.";
 
   navigator.clipboard.writeText(textToCopy);
 }
@@ -190,9 +190,9 @@ function App() {
                   onChange={handleChange.bind(this, "goldPrice")}
                   name="goldPrices"
                 >
-                  <option value={55}>10K : 55</option>
-                  <option value={72}>14K : 72</option>
-                  <option value={93}>18K : 93</option>
+                  <option value={57}>10K : 57</option>
+                  <option value={76}>14K : 76</option>
+                  <option value={95}>18K : 95</option>
                   <option value={8}>925 : 8</option>
                 </select>
               <label className={"mx-3"}>=</label>
@@ -344,7 +344,7 @@ function App() {
 
                   <div className="col-12 mt-2">
                     <p className="text-muted" style={{ fontSize: '16px', width: '100%' }}>
-                      NOTE: Final Cost, Including 10% Trump Tariff.
+                      Including 10% Trump Tariff.
                     </p>
                   </div>
 

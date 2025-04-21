@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   let initialFormData = {
-    goldPrice: 57,
+    goldPrice: 59,
     goldWeight: "",
     roundWeight: "",
     roundPrice: 250,
@@ -190,9 +190,9 @@ function App() {
                   onChange={handleChange.bind(this, "goldPrice")}
                   name="goldPrices"
                 >
-                  <option value={57}>10K : 57</option>
-                  <option value={76}>14K : 76</option>
-                  <option value={95}>18K : 95</option>
+                  <option value={59}>10K : 59</option>
+                  <option value={79}>14K : 79</option>
+                  <option value={99}>18K : 99</option>
                   <option value={8}>925 : 8</option>
                 </select>
               <label className={"mx-3"}>=</label>

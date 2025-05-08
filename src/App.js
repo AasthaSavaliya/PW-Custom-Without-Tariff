@@ -78,7 +78,7 @@ function App() {
       textToCopy += `\n$${value} / Ct = ${parseFloat(
         Math.ceil(
             ((formData["totalWithoutRound"] + formData["roundWeight"] * value) *
-            1.22)/10
+            1.12)/10
         )*10
       )}`;
     });
@@ -93,7 +93,7 @@ function App() {
   //     textToCopy += `\n${value.name} = $${parseFloat(
   //       Math.ceil(
   //           ((formData["totalWithoutRound"] + formData["roundWeight"] * `${value.value}`) *
-  //           1.22)/10
+  //           1.12)/10
   //       )*10
   //     )}`;
   //   });
@@ -107,12 +107,12 @@ function App() {
   [250, 275, 325, 400, 450].map((value) => {
     textToCopy += `\n$${value} / Ct = ${parseFloat(
       Math.ceil(
-        ((formData["totalWithoutRound"] + formData["roundWeight"] * value) * 1.22) / 10
+        ((formData["totalWithoutRound"] + formData["roundWeight"] * value) * 1.12) / 10
       ) * 10
     )}`;
   });
 
-  textToCopy += "\n\nIncluding 10% Trump Tariff.";
+  // textToCopy += "\n\nIncluding 10% Trump Tariff.";
 
   navigator.clipboard.writeText(textToCopy);
 }
@@ -176,25 +176,25 @@ function App() {
             </div>
 
             <div className="input-group mb-3 pe-5">
-              {/*<label>$&nbsp;</label>*/}
-              {/*<input*/}
-              {/*  name="goldPrice"*/}
-              {/*  onChange={handleChange.bind(this, "goldPrice")}*/}
-              {/*  type="number"*/}
-              {/*  className="form-control text-center"*/}
-              {/*  aria-label="Rate"*/}
-              {/*  value={formData["goldPrice"]}*/}
-              {/*/>*/}
+              <label>$&nbsp;</label>
+              <input
+                name="goldPrice"
+                onChange={handleChange.bind(this, "goldPrice")}
+                type="number"
+                className="form-control text-center"
+                aria-label="Rate"
+                value={formData["goldPrice"]}
+              />
 
-              <select
-                  onChange={handleChange.bind(this, "goldPrice")}
-                  name="goldPrices"
-                >
-                  <option value={59}>10K : 59</option>
-                  <option value={79}>14K : 79</option>
-                  <option value={99}>18K : 99</option>
-                  <option value={8}>925 : 8</option>
-                </select>
+              {/*<select*/}
+              {/*    onChange={handleChange.bind(this, "goldPrice")}*/}
+              {/*    name="goldPrices"*/}
+              {/*  >*/}
+              {/*    <option value={59}>10K : 59</option>*/}
+              {/*    <option value={79}>14K : 79</option>*/}
+              {/*    <option value={99}>18K : 99</option>*/}
+              {/*    <option value={8}>925 : 8</option>*/}
+              {/*  </select>*/}
               <label className={"mx-3"}>=</label>
               <label>{formData["goldTotal"].toFixed(2)}</label>
             </div>
@@ -327,13 +327,13 @@ function App() {
                             {isNaN(parseFloat(formData["roundWeight"]))
                               ? Math.ceil(
                                   ((formData["totalWithoutRound"] + 0 * value) *
-                                    1.22) /
+                                    1.12) /
                                     10
                                 ) * 10
                               : Math.ceil(
                                   ((formData["totalWithoutRound"] +
                                     value * formData["roundWeight"]) *
-                                    1.22) /
+                                    1.12) /
                                     10
                                 ) * 10}
                           </span>
@@ -342,11 +342,11 @@ function App() {
                     })}
                   </div>
 
-                  <div className="col-12 mt-2">
-                    <p className="text-muted" style={{ fontSize: '16px', width: '100%' }}>
-                      Including 10% Trump Tariff.
-                    </p>
-                  </div>
+                  {/*<div className="col-12 mt-2">*/}
+                  {/*  <p className="text-muted" style={{ fontSize: '16px', width: '100%' }}>*/}
+                  {/*    Including 10% Trump Tariff.*/}
+                  {/*  </p>*/}
+                  {/*</div>*/}
 
                   <div className="position-absolute end-0 ps-0 w-auto">
                     <button onClick={clipBoadHandler} className="btn copy">
@@ -378,13 +378,13 @@ function App() {
           {/*                  {isNaN(parseFloat(formData["roundWeight"]))*/}
           {/*                    ? Math.ceil(*/}
           {/*                        ((formData["totalWithoutRound"] + 0 * value.value) **/}
-          {/*                          1.22) /*/}
+          {/*                          1.12) /*/}
           {/*                          10*/}
           {/*                      ) * 10*/}
           {/*                    : Math.ceil(*/}
           {/*                        ((formData["totalWithoutRound"] +*/}
           {/*                          value.value * formData["roundWeight"]) **/}
-          {/*                          1.22) /*/}
+          {/*                          1.12) /*/}
           {/*                          10*/}
           {/*                      ) * 10}*/}
           {/*                </span>*/}

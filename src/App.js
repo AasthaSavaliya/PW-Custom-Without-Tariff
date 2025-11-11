@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   let initialFormData = {
-    goldPrice: 59,
+    goldPrice: 70,
     goldWeight: "",
     roundWeight: "",
     roundPrice: 250,
